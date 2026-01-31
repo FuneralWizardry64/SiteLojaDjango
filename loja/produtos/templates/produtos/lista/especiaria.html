@@ -1,0 +1,44 @@
+% extends 'paginas/base.html' %}
+{% load static %}
+{% block titulo %}
+Lista de Especiarias
+{% endblock %}
+
+{% block conteudo %}
+<h3>Lista de Especiarias registradas</h3>
+<hr>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th>Nome</th>
+            <th>Valor</th>
+            <th>Disponibilidade</th>
+            <th>Descricao</th>
+
+        </tr>
+        {% for especiaria in object_list %} <tr>
+            <td>{{ especiaria.nome }}</td>
+            <td>{{ especiaria.valor }}</td>
+            <td>{{ especiaria.disponibilidade }}</td>
+            <td>{{ especiaria.descricao }}</td>
+
+            <td>
+                <a href="{% url 'editar-especiaria' especiaria.pk %}" class="btn btn-warning btn-sm"
+                    title="Editar">Editar</a>
+
+                <a href="{% url 'excluir-especiaria' especiaria.pk %}" class="btn btn-danger btn-sm"
+                    title="Excluir">Excluir</a>
+
+            </td>
+        </tr>
+
+        {% empty %}
+        <tr>
+            <td colspan="3">
+                Nenhum campo registro.
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
