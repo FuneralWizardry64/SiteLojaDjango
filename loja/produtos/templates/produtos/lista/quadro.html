@@ -1,0 +1,50 @@
+{% extends 'paginas/base.html' %}
+{% load static %}
+{% block titulo %}
+Lista de Departamentos
+{% endblock %}
+{% block conteudo %}
+<h3>Lista de Quadros registrados
+    <a href="{% url 'criar-quadro' %}" class="btn btn-primary btn-sm float-end">
+        Adicionar Quadro</a>
+</h3>
+<hr>
+<div class="table-responsive">
+    <table class="table table-striped" id="tabela-listar">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>valor</th>
+            <th>disponibilidade</th>
+            <th>descricao</th>
+            <th>autor</th>
+            <th>Opções</th>=
+        </tr>
+        </thead>
+        <tbody>
+        {% for Quadro in object_list %}
+        <tr>
+            <td>{{ Quadro.nome }}</td>
+            <td>{{ Quadro.valor }}</td>
+            <td>{{ Quadro.disponibilidade }}</td>
+            <td>{{ Quadro.descricao }}</td>
+            <td>{{ Quadro.autor }}</td>
+            <td>
+                <a href="{% url 'editar-quadro' Quadro.pk %}" class="btn btn-warning btn-sm" title="Editar">Editar</a>
+
+                <a href="{% url 'excluir-quadro' Quadro.pk %}" class="btn btn-danger btn-sm" title="Excluir">Excluir</a>
+
+            </td>
+        </tr>
+
+        {% empty %}
+        <tr>
+            <td colspan="6">
+                Nenhum campo registro.
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

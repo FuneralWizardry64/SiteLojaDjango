@@ -6,7 +6,7 @@ class Especiaria(models.Model):
     nome = models.CharField(max_length=50)
     valor = models.DecimalField(max_digits=9, decimal_places=2)
     disponibilidade = models.BooleanField()
-    descricao= models.TextField(blank=True)
+    descricao= models.TextField(blank=True, verbose_name="descrição")
 
     def __str__(self):
         return "{} - {} - {} - {}".format(self.nome, self.valor, self.disponibilidade, self.descricao)
@@ -40,4 +40,4 @@ class Livro(models.Model):
     isbn = models.CharField(max_length=50)    
 
     def __str__(self):
-        return "{} - {} - {} - {} - {}".format(self.nome, self.valor, self.disponibilidade, self.descricao, self.Isbn)
+        return "{} - {} - {} - {} - {}".format(self.nome, self.valor, self.disponibilidade, self.descricao, self.isbn)

@@ -1,0 +1,56 @@
+{% extends 'paginas/base.html' %}
+{% load static %}
+{% block titulo %}
+Lista de Departamentos
+{% endblock %}
+{% block conteudo %}
+<h3>Lista de Livros registrados
+    <a href="{% url 'criar-livro' %}" class="btn btn-primary btn-sm float-end">
+        Adicionar Livros
+
+    </a>
+</h3>
+
+<hr>
+
+<div class="table-responsive">
+    <table class="table table-striped" id="tabela-listar">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>valor</th>
+            <th>disponibilidade</th>
+            <th>descricao</th>
+            <th>isbn</th>
+            <th>Opções</th>
+
+
+        </tr>
+        </thead>
+        <tbody>x
+        {% for Livros in object_list %}
+        <tr>
+            <td>{{ Livros.nome }}</td>
+            <td>{{ Livros.valor }}</td>
+            <td>{{ Livros.disponibilidade }}</td>
+            <td>{{ Livros.descricao }}</td>
+            <td>{{ Livros.isbn }}</td>
+            <td>
+                <a href="{% url 'editar-livro' Livros.pk %}" class="btn btn-warning btn-sm" title="Editar">Editar</a>
+
+                <a href="{% url 'excluir-livro' Livros.pk %}" class="btn btn-danger btn-sm" title="Excluir">Excluir</a>
+
+            </td>
+        </tr>
+
+        {% empty %}
+        <tr>
+            <td colspan="6">
+                Nenhum campo registro.
+            </td>
+        </tr>
+        {% endfor %}
+        </thead>
+    </table>
+</div>
+{% endblock %}

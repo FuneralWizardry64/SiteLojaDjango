@@ -1,0 +1,57 @@
+{% extends 'paginas/base.html' %}
+{% load static %}
+{% block titulo %}
+Lista de Departamentos
+{% endblock %}
+{% block conteudo %}
+<h3>Lista de Artefato registrados
+
+    <a href="{% url 'criar-artefato' %}" class="btn btn-primary btn-sm float-end">
+        Adicionar Artefato
+
+    </a>
+</h3>
+<hr>
+
+<div class="table-responsive">
+    <table class="table table-striped" id="tabela-listar">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>valor</th>
+                <th>disponibilidade</th>
+                <th>descricao</th>
+                <th>tipo</th>
+                <th>Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for Artefato in object_list %}
+        <tr>
+            <td>{{ Artefato.nome }}</td>
+            <td>{{ Artefato.valor }}</td>
+            <td>{{ Artefato.disponibilidade }}</td>
+            <td>{{ Artefato.descricao }}</td>
+            <td>{{ Artefato.tipo }}</td>
+
+            <td>
+                <a href="{% url 'editar-artefato' Artefato.pk %}" class="btn btn-warning btn-sm"
+                    title="Editar">Editar</a>
+
+                <a href="{% url 'excluir-artefato' Artefato.pk %}" class="btn btn-danger btn-sm"
+                    title="Excluir">Excluir</a>
+
+            </td>
+        </tr>
+
+        {% empty %}
+        <tr>
+            <td colspan="6">
+                Nenhum campo registro.
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
